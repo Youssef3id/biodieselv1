@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioDiesel-Accounts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="acc_cli.css" rel="stylesheet" />
+    <script src="acc_cli.js"></script>
+    <link rel="icon" type="image/png" href="/assets/icons/biologo.svg" />
+</head>
+
+<body>
+    <div class="layout-wrapper">
+        <!-- =================================
+         Sidebar (Desktop Only)
+         ================================= -->
+        <aside class="sidebar d-none d-lg-flex">
+            <!-- Logo -->
+            <div class="sidebar-header d-flex align-items-center p-4">
+                <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+                <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+            </div>
+            <!-- Navigation Links -->
+            <nav class="nav flex-column p-3 flex-grow-1">
+                <a class="nav-link" href="../../php/dashboard.php"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+                <a class="nav-link" href="../transaction/index.html"><i class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+                <a class="nav-link active" href="../accounts-clients/index.html"><i class="fas fa-wallet fa-fw"></i>Accounts</a>
+                <a class="nav-link" href="../investments/index.html"><i class="fas fa-chart-line fa-fw"></i>Investments</a>
+                <a class="nav-link" href="../credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit Cards</a>
+                <a class="nav-link" href="../loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+                <a class="nav-link" href="../services/index.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+                <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+            </nav>
+            <!-- Settings Link -->
+            <div class="p-3">
+                <a class="nav-link" href="/pages/setting/edit-profile.html"><i class="fas fa-cog fa-fw"></i>Settings</a>
+            </div>
+        </aside>
+
+        <!-- =================================
+         Main Content Area
+         ================================= -->
+    <!-- Main Content -->
+    <div class="flex-grow-1 d-flex flex-column main-content">
+      <header class="dashboard-header p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <button class="btn d-md-none me-3 p-0 fs-3 text-success" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#mobile-menu">
+              <i class="fas fa-bars"></i>
+            </button>
+            <h2 class="mb-0 fw-bold d-none d-md-block">Overview</h2>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="position-relative" style="width: 300px">
+              <i class="fas fa-search search-icon-inside"></i>
+              <input type="text" class="form-control search-input ps-5 py-2" placeholder="Search for something" />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-wrapper bg-light-pink">
+                <i class="fa-regular fa-bell fa-lg" style="color: #fe5c73"></i>
+              </div>
+              <div class="icon-wrapper bg-light-green">
+                <i class="fa-solid fa-gear" style="color: #0daf25"></i>
+              </div>
+            </div>
+
+            <!-- User Avatar -->
+            <div class="dropdown">
+              <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://i.pravatar.cc/40" alt="User" class="rounded-circle user-img" width="45" height="45" />
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li>
+                  <a class="dropdown-item text-danger" href="../php/logout.php">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+            <!-- =================================
+             Mobile Sidebar (Offcanvas Menu)
+             ================================= -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu">
+                <div class="offcanvas-header border-bottom">
+                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark">
+                        <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+                        <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <!-- Offcanvas Navigation - Using the same navigation as desktop -->
+                <div class="offcanvas-body">
+                    <nav class="nav flex-column">
+                <a class="nav-link" href="../../php/dashboard.php"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+                <a class="nav-link" href="../transaction/index.html"><i class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+                <a class="nav-link active" href="../accounts-clients/index.html"><i class="fas fa-wallet fa-fw"></i>Accounts</a>
+                <a class="nav-link" href="../investments/index.html"><i class="fas fa-chart-line fa-fw"></i>Investments</a>
+                <a class="nav-link" href="../credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit Cards</a>
+                <a class="nav-link" href="../loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+                <a class="nav-link" href="../services/index.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+                <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+                    </nav>
+                    <div class="sidebar-settings-link mt-3">
+                        <a class="nav-link sidebar-link" href="/pages/setting/edit-profile.html"><i class="fas fa-cog"></i>Settings</a>
+                    </div>
+                    <nav class="nav flex-column" aria-labelledby="mobile-nav">
+                        <!-- Clone of main-nav content via JavaScript -->
+                    </nav>
+                </div>
+            </div>
+
+            <!-- =================================
+             Main Page Content
+             ================================= -->
+            <div class="content-page p-4">
+                <!-- Overview Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card balance-card p-3">
+                            <h5>My Balance</h5>
+                            <h3 class="mb-0">$12,750</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card income-card p-3">
+                            <h5>Income</h5>
+                            <h3 class="mb-0">$5,600</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card expense-card p-3">
+                            <h5>Expense</h5>
+                            <h3 class="mb-0">$3,460</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card saving-card p-3">
+                            <h5>Total Saving</h5>
+                            <h3 class="mb-0">$7,920</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Row -->
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-lg-8 mb-4">
+                        <!-- Last Subscribers -->
+                        <h4 class="section-title">Last Subscribers</h4>
+                        <div class="card mb-4">
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Tier</th>
+                                                <th>Card</th>
+                                                <th>Status</th>
+                                                <th class="text-end">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://i.pravatar.cc/40?img=3"
+                                                            class="rounded-circle me-3" width="40" height="40" />
+                                                        <div>
+                                                            <h6 class="mb-0">John Doe</h6>
+                                                            <small class="text-muted">25 Jan 2021</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Gold</td>
+                                                <td>1234 ****</td>
+                                                <td class="status-pending">Pending</td>
+                                                <td class="text-end amount-negative">-$150</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://i.pravatar.cc/40?img=4"
+                                                            class="rounded-circle me-3" width="40" height="40" />
+                                                        <div>
+                                                            <h6 class="mb-0">Jane Smith</h6>
+                                                            <small class="text-muted">25 Jan 2021</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Silver</td>
+                                                <td>1234 ****</td>
+                                                <td class="status-completed">Completed</td>
+                                                <td class="text-end amount-negative">-$340</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://i.pravatar.cc/40?img=5"
+                                                            class="rounded-circle me-3" width="40" height="40" />
+                                                        <div>
+                                                            <h6 class="mb-0">Sam Wilson</h6>
+                                                            <small class="text-muted">25 Jan 2021</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Platinum</td>
+                                                <td>1234 ****</td>
+                                                <td class="status-completed">Completed</td>
+                                                <td class="text-end amount-positive">+$780</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Debit & Credit Overview -->
+                        <h4 class="section-title">Debit & Credit Overview</h4>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <p class="mb-0 text-muted">
+                                            $7,560 Debited & $5,420 Credited in this Week
+                                        </p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex align-items-center me-3">
+                                            <div class="bg-orange rounded-circle me-2"
+                                                style="width: 12px; height: 12px"></div>
+                                            <span>Debit</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-success rounded-circle me-2"
+                                                style="width: 12px; height: 12px"></div>
+                                            <span>Credit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height: 300px">
+                                    <canvas id="financeChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-4">
+                        <!-- My Card -->
+                        <h4 class="section-title">My Card</h4>
+                        <div class="card credit-card mb-4">
+                            <div class="card-body d-flex flex-column justify-content-between h-100">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <small>Balance</small>
+                                        <h3>$5,756</h3>
+                                    </div>
+                                    <i class="far fa-credit-card fa-2x opacity-75"></i>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <small>CARD HOLDER</small>
+                                        <p class="mb-0">Eddy Cusuma</p>
+                                    </div>
+                                    <div>
+                                        <small>VALID THRU</small>
+                                        <p class="mb-0">12/22</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-center pt-3 mt-2 border-top border-white-50">
+                                    <span class="font-monospace">3778 **** **** 1234</span>
+                                    <div class="card-chip"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Subscribers -->
+                        <h4 class="section-title">Total Subscribers</h4>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width: 40px; height: 40px">
+                                        <i class="fas fa-medal text-muted"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">Silver (6 Months)</h6>
+                                    </div>
+                                    <div class="fw-bold">450 Members</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width: 40px; height: 40px">
+                                        <i class="fas fa-medal text-warning"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">Gold (6 Months)</h6>
+                                    </div>
+                                    <div class="fw-bold">160 Members</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width: 40px; height: 40px">
+                                        <i class="fas fa-gem text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">Platinum (12 Months)</h6>
+                                    </div>
+                                    <div class="fw-bold">1085 Members</div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-purple bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width: 40px; height: 40px">
+                                        <i class="fas fa-crown text-purple"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">VIP (18 Months)</h6>
+                                    </div>
+                                    <div class="fw-bold">90 Members</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="test.js"></script>
+    <script>
+        console.log('Inline script loaded');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - inline');
+            
+            function fetchSubscribers() {
+                console.log('Fetching subscribers...');
+                fetch('http://localhost/project-un/php/get_subscribers.php')
+                    .then(response => {
+                        console.log('Response received:', response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Data received:', data);
+                        if (data.success) {
+                            displaySubscribers(data.data);
+                        } else {
+                            console.error('Failed to fetch subscribers:', data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching subscribers:', error);
+                    });
+            }
+
+            function displaySubscribers(subscribers) {
+                const tbody = document.querySelector('.table tbody');
+                if (!tbody) {
+                    console.error('Could not find table body element');
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+
+                subscribers.forEach(subscriber => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${subscriber.avatar_url || 'https://i.pravatar.cc/40?img=' + subscriber.id}"
+                                    class="rounded-circle me-3" width="40" height="40" />
+                                <div>
+                                    <h6 class="mb-0">${subscriber.name}</h6>
+                                    <small class="text-muted">${formatDate(subscriber.created_at)}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${subscriber.tier}</td>
+                        <td>${maskCardNumber(subscriber.card_number)}</td>
+                        <td class="status-${subscriber.status.toLowerCase()}">${subscriber.status}</td>
+                        <td class="text-end amount-${subscriber.amount >= 0 ? 'positive' : 'negative'}">
+                            ${formatAmount(subscriber.amount)}
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            function formatDate(dateString) {
+                try {
+                    const date = new Date(dateString);
+                    return date.toLocaleDateString('en-US', { 
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric'
+                    });
+                } catch (error) {
+                    console.error('Error formatting date:', error);
+                    return dateString;
+                }
+            }
+
+            function maskCardNumber(cardNumber) {
+                if (!cardNumber) return '****';
+                return cardNumber.slice(0, 4) + ' ****';
+            }
+
+            function formatAmount(amount) {
+                return (amount >= 0 ? '+' : '') + '$' + Math.abs(parseFloat(amount)).toFixed(2);
+            }
+
+            // Start fetching subscribers
+            fetchSubscribers();
+        });
+    </script>
+    <script src="acc_cli.js"></script>
+    <script src="../isAdmin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>BioDiesel-Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="services_style.css" />
+  <link rel="icon" type="image/png" href="/assets/icons/biologo.svg" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <!-- =================================
+       Sidebar (Desktop Only)
+       ================================= -->
+    <aside class="sidebar d-none d-lg-flex">
+      <!-- Logo -->
+      <div class="sidebar-header d-flex align-items-center p-4">
+        <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+        <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+      </div>
+      <!-- Navigation Links -->
+      <nav class="nav flex-column p-3 flex-grow-1">
+        <a class="nav-link" href="../../php/dashboard.php"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+        <a class="nav-link" href="../transaction/index.html"><i class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+        <a class="nav-link" href="../accounts-clients/index.html"><i class="fas fa-wallet fa-fw"></i>Accounts</a>
+        <a class="nav-link" href="../investments/index.html"><i class="fas fa-chart-line fa-fw"></i>Investments</a>
+        <a class="nav-link" href="../credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit Cards</a>
+        <a class="nav-link" href="../loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+        <a class="nav-link active" href="../services/index.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+        <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+      </nav>
+      <!-- Settings Link -->
+      <div class="p-3">
+        <a class="nav-link" href="/pages/setting/edit-profile.html"><i class="fas fa-cog fa-fw"></i>Settings</a>
+      </div>
+    </aside>
+
+    <!-- =================================
+       Main Content Area
+       ================================= -->
+    <!-- Main Content -->
+    <div class="flex-grow-1 d-flex flex-column main-content">
+      <header class="dashboard-header p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <button class="btn d-md-none me-3 p-0 fs-3 text-success" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#mobile-menu">
+              <i class="fas fa-bars"></i>
+            </button>
+            <h2 class="mb-0 fw-bold d-none d-md-block">Overview</h2>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="position-relative" style="width: 300px">
+              <i class="fas fa-search search-icon-inside"></i>
+              <input type="text" class="form-control search-input ps-5 py-2" placeholder="Search for something" />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-wrapper bg-light-pink">
+                <i class="fa-regular fa-bell fa-lg" style="color: #fe5c73"></i>
+              </div>
+              <div class="icon-wrapper bg-light-green">
+                <i class="fa-solid fa-gear" style="color: #0daf25"></i>
+              </div>
+            </div>
+
+            <!-- User Avatar -->
+            <div class="dropdown">
+              <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://i.pravatar.cc/40" alt="User" class="rounded-circle user-img" width="45" height="45" />
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li>
+                  <a class="dropdown-item text-danger" href="../php/logout.php">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- =================================
+         Mobile Sidebar (Offcanvas Menu)
+         ================================= -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu">
+        <div class="offcanvas-header border-bottom">
+          <a href="#" class="d-flex align-items-center text-decoration-none text-dark">
+            <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+            <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+          </a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <!-- Offcanvas Navigation -->
+        <div class="offcanvas-body">
+          <nav class="nav flex-column">
+        <a class="nav-link" href="../../php/dashboard.php"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+        <a class="nav-link" href="../transaction/index.html"><i class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+        <a class="nav-link" href="../accounts-clients/index.html"><i class="fas fa-wallet fa-fw"></i>Accounts</a>
+        <a class="nav-link" href="../investments/index.html"><i class="fas fa-chart-line fa-fw"></i>Investments</a>
+        <a class="nav-link" href="../credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit Cards</a>
+        <a class="nav-link" href="../loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+        <a class="nav-link active" href="../services/index.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+        <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+          </nav>
+          <div class="sidebar-settings-link mt-3">
+            <a class="nav-link sidebar-link" href="/pages/setting/edit-profile.html"><i
+                class="fas fa-cog"></i>Settings</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main>
+        <div class="content-box">
+          <div class="row g-4 mb-4">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+              <div class="custom-card bg-white">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-wrapper bg-orange-light text-orange" style="background-color: #e7edff">
+                    <img src="/assets/icons/life-insurance.svg" alt="Refill" />
+                  </div>
+                  <div>
+                    <h6 class="fw-semibold text-dark mb-1">Life Insurance</h6>
+                    <small class="muted-text">Unlimited protection</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4">
+              <div class="custom-card bg-white">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-wrapper bg-orange-light text-orange">
+                    <img src="/assets/icons/bag.svg" alt="Refill" />
+                  </div>
+                  <div>
+                    <h6 class="fw-semibold text-dark mb-1">Refill</h6>
+                    <small class="muted-text">Buy. Think. Grow.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4">
+              <div class="custom-card bg-white">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-wrapper bg-cyan-light text-cyan">
+                    <img src="/assets/icons/surface.svg" alt="Safety" />
+                  </div>
+                  <div>
+                    <h6 class="fw-semibold text-dark mb-1">Safety</h6>
+                    <small class="muted-text">We are your allies</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-4 shadow-sm p-4 bg-white">
+            <h2 class="h5 fw-semibold text-dark mb-4">Bank Services List</h2>
+
+            <!-- Service Items -->
+
+            <div class="service-item d-flex align-items-center justify-content-between p-4 mb-3 rounded-3 hover-shadow">
+              <div class="d-flex align-items-center justify-content-center gap-3" style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                <div class="icon-box bg-pink text-pink">
+                  <img src="/assets/icons/Business1.svg" alt="Business loans" />
+                </div>
+                <div>
+                  <h6 class="mb-1 fw-semibold text-dark">Business loans</h6>
+                  <small class="muted-text">It is a long established</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center gap-4">
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark text-center">
+                    Lorem Ipsum
+                  </h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm rounded-5 ps-4 pe-4">
+                  View Details
+                </button>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center justify-content-between p-4 mb-3 rounded-3 hover-shadow">
+              <div class="d-flex align-items-center justify-content-center gap-3" style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                <div class="icon-box bg-pink text-pink">
+                  <img src="/assets/icons/Business2.svg" alt="Business loans" />
+                </div>
+                <div>
+                  <h6 class="mb-1 fw-semibold text-dark">Business loans</h6>
+                  <small class="muted-text">It is a long established</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center gap-4">
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark text-center">
+                    Lorem Ipsum
+                  </h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm rounded-5 ps-4 pe-4">
+                  View Details
+                </button>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center justify-content-between p-4 mb-3 rounded-3 hover-shadow">
+              <div class="d-flex align-items-center justify-content-center gap-3" style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                <div class="icon-box bg-pink text-pink">
+                  <img src="/assets/icons/Business3.svg" alt="Business loans" />
+                </div>
+                <div>
+                  <h6 class="mb-1 fw-semibold text-dark">Business loans</h6>
+                  <small class="muted-text">It is a long established</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center gap-4">
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark text-center">
+                    Lorem Ipsum
+                  </h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm rounded-5 ps-4 pe-4">
+                  View Details
+                </button>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center justify-content-between p-4 mb-3 rounded-3 hover-shadow">
+              <div class="d-flex align-items-center justify-content-center gap-3" style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                <div class="icon-box bg-pink text-pink">
+                  <img src="/assets/icons/Business4.svg" alt="Business loans" />
+                </div>
+                <div>
+                  <h6 class="mb-1 fw-semibold text-dark">Business loans</h6>
+                  <small class="muted-text">It is a long established</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center gap-4">
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark text-center">
+                    Lorem Ipsum
+                  </h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <div class="muted-text small text-center">
+                  <h6 class="mb-1 fw-semibold text-dark">Lorem Ipsum</h6>
+                  <div class="muted-text small">Many publishing</div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm rounded-5 ps-4 pe-4">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../isAdmin.js"></script>
+  <script src="services.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioDiesel - Preferences</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/icons/biologo.svg" />
+  <link rel="stylesheet" href="style.css">
+  <script src="preferences_js.js"></script>
+</head>
+
+<body>
+  <div class="d-flex layout-wrapper">
+    <aside class="sidebar d-none d-lg-flex">
+      <div class="sidebar-header d-flex align-items-center p-4">
+        <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+        <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+      </div>
+      <nav class="nav flex-column p-3 flex-grow-1">
+        <a class="nav-link" href="/index.html"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+        <a class="nav-link" href="/pages/transaction/index.html"><i
+            class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+        <a class="nav-link" href="/pages/accounts-clients/index.html"><i class="fas fa-wallet fa-fw"></i>Accounts</a>
+        <a class="nav-link" href="/pages/investments/index.html"><i class="fas fa-chart-line fa-fw"></i>Investments</a>
+        <a class="nav-link" href="/pages/credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit
+          Cards</a>
+        <a class="nav-link" href="/pages/loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+        <a class="nav-link" href="/pages/services/services.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+        <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+      </nav>
+      <div class="p-3">
+        <a class="nav-link active" href="/pages/setting/edit-profile.html"><i class="fas fa-cog fa-fw"></i>Setting</a>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="dashboard-header d-flex justify-content-between align-items-center p-3">
+        <div class="d-flex align-items-center">
+          <button class="btn d-lg-none me-3" data-bs-toggle="offcanvas" data-bs-target="#mobile-menu"
+            aria-controls="mobile-menu">
+            <i class="fas fa-bars fs-4 text-success"></i>
+          </button>
+          <h2 class="mb-0 fw-bold d-none d-md-block">Settings</h2>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="position-relative d-none d-md-block">
+            <i class="fas fa-search search-icon-inside"></i>
+            <input type="text" class="form-control search-input ps-5" placeholder="Search for something" />
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="icon-wrapper bg-light-pink">
+              <i class="fa-regular fa-bell fa-lg" style="color: #fe5c73"></i>
+            </div>
+            <div class="icon-wrapper bg-light-green">
+              <i class="fa-solid fa-gear" style="color: #0daf25"></i>
+            </div>
+          </div>
+          <div class="dropdown">
+            <img src="https://i.pravatar.cc/40?u=a042581f4e29026704d" class="user-img rounded-circle dropdown-toggle"
+              data-bs-toggle="dropdown" style="cursor: pointer" />
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item text-danger" href="../php/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu">
+        <div class="offcanvas-header border-bottom">
+          <a href="#" class="d-flex align-items-center text-decoration-none text-dark">
+            <img src="/assets/icons/biologo.svg" alt="Logo" style="height: 36px" />
+            <span class="ms-2 fs-4 fw-bold">BioDiesel.</span>
+          </a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <nav class="nav flex-column">
+            <a class="nav-link" href="/index.html"><i class="fas fa-home fa-fw"></i>Dashboard</a>
+            <a class="nav-link" href="/pages/transaction/index.html"><i
+                class="fas fa-exchange-alt fa-fw"></i>Transactions</a>
+            <a class="nav-link" href="/pages/accounts-clients/index.html"><i
+                class="fas fa-wallet fa-fw"></i>Accounts</a>
+            <a class="nav-link" href="/pages/investments/index.html"><i
+                class="fas fa-chart-line fa-fw"></i>Investments</a>
+            <a class="nav-link" href="/pages/credit-cards/index.html"><i class="far fa-credit-card fa-fw"></i>Credit
+              Cards</a>
+            <a class="nav-link" href="/pages/loans/index.html"><i class="fas fa-hand-holding-usd fa-fw"></i>Loans</a>
+            <a class="nav-link" href="/pages/services/index.html"><i class="fas fa-wrench fa-fw"></i>Services</a>
+            <a class="nav-link" href="#"><i class="fas fa-crown fa-fw"></i>My Privileges</a>
+          </nav>
+          <div class="sidebar-settings-link mt-3">
+            <a class="nav-link sidebar-link active" href="/pages/setting/edit-profile.html"><i
+                class="fas fa-cog"></i>Settings</a>
+          </div>
+        </div>
+      </div>
+
+      <main class="content-fluid p-4">
+        <div class="profile-edit-container">
+          <div class="profile-header">
+            <ul class="nav profile-tabs">
+              <li class="nav-item">
+                <a class="nav-link" href="/pages/setting/edit-profile.html">Edit Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/pages/setting/preferences.html">Preferences</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pages/setting/security.html">Security</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="settings-content">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="currency" class="input-label">Currency</label>
+                <input type="text" class="form-control" id="currency" value="USD">
+              </div>
+              <div class="col-md-6">
+                <label for="timezone" class="input-label">Time Zone</label>
+                <input type="text" class="form-control" id="timezone" value="(GMT-12:00) International Date Line West">
+              </div>
+            </div>
+
+            <div class="setting-section">
+              <h3 class="section-title">Notifications</h3>
+              <div class="toggle-container">
+                <label class="switch">
+                  <input type="checkbox" id="toggle1" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">I send or receive digital currency</span>
+              </div>
+              <div class="toggle-container">
+                <label class="switch">
+                  <input type="checkbox" id="toggle2" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Merchant order updates</span>
+              </div>
+              <div class="toggle-container">
+                <label class="switch">
+                  <input type="checkbox" id="toggle3" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Account recommendations</span>
+              </div>
+            </div>
+
+            <div class="save-button-container">
+              <button class="save-button" id="savePreferencesBtn">Save Preferences</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

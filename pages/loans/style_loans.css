@@ -1,0 +1,536 @@
+:root {
+    --primary-green: #1FAF38;
+    --light-gray-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-color: #64748b;
+    --text-dark: #334155;
+    --sidebar-width: 250px;
+    --transition-speed: 0.3s;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --transition-base: 0.3s ease;
+    --animation-duration: 0.5s; /* Added for consistent animation timing */
+    --text-muted: #94a3b8;
+}
+
+/* ======================================================
+   [02] Global Layout & Typography
+   ====================================================== */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--light-gray-bg);
+    color: var(--text-dark);
+    animation: fadeIn var(--animation-duration) ease-in; /* Page load animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+/* ======================================================
+   [03] Sidebar & Offcanvas (Mobile Menu)
+   ====================================================== */
+.sidebar,
+.offcanvas {
+    background-color: #ffffff;
+    transition: transform var(--transition-speed) ease;
+    animation: slideInLeft var(--animation-duration) ease-out; /* Sidebar entrance */
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+}
+
+/* ======================================================
+   [04] Sidebar & Mobile Nav Links with Enhanced Animations
+   ====================================================== */
+.sidebar .nav-link,
+.offcanvas .nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all var(--transition-speed) ease-out; /* Smoother transition */
+    transform-origin: left center;
+}
+
+/* Green side-line animation on hover & active */
+.sidebar .nav-link::before,
+.offcanvas .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 0;
+    background-color: var(--primary-green);
+    border-radius: 0 4px 4px 0;
+    transition: width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy animation */
+}
+
+/* Hover styles with animation */
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+    background-color: var(--light-gray-bg);
+    color: var(--primary-green);
+    transform: translateY(-3px); /* Match original style */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Add subtle shadow */
+}
+.sidebar .nav-link:hover::before,
+.offcanvas .nav-link:hover::before {
+    width: 4px;
+}
+
+/* Active link styling with animation */
+.sidebar .nav-link.active,
+.offcanvas .nav-link.active {
+    background-color: var(--light-green-bg); /* match green bg */
+    color: var(--primary-green);
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+.sidebar .nav-link.active::before,
+.offcanvas .nav-link.active::before {
+    width: 4px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(31, 175, 56, 0.2); }
+    70% { box-shadow: 0 0 0 8px rgba(31, 175, 56, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(31, 175, 56, 0); }
+}
+
+/* ======================================================
+   [05] Header / Top Navigation Bar with Animations
+   ====================================================== */
+.dashboard-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    animation: slideInDown var(--animation-duration) ease-out; /* Header entrance */
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Search input inside header */
+.search-input {
+    background-color: var(--light-gray-bg);
+    border-radius: 25px;
+    border: 1px solid transparent;
+    transition: all var(--transition-speed) ease-out;
+}
+
+.search-input:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+    background-color: #fff;
+    transform: scale(1.02); /* consistent zoom */
+}
+
+.search-icon-inside {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease-out;
+}
+
+.search-input:focus + .search-icon-inside {
+    color: var(--primary-green); /* Icon color change on focus */
+}
+
+/* ======================================================
+   [06] Icons & User Image Hover Effects with Animations
+   ====================================================== */
+.icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy animation */
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+/* Custom icon background colors */
+.bg-light-pink { background-color: #FEF2F2; }
+.bg-light-green { background-color: #F0FDF4; }
+
+/* User profile image hover border */
+.user-img {
+    border: 2px solid transparent;
+    transition: all var(--transition-speed) ease-out;
+}
+
+.user-img:hover {
+    border-color: var(--primary-green);
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+/* ======================================================
+   [08] Main Content Area
+   ====================================================== */
+.main-content {
+    flex-grow: 1;
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition-speed) ease;
+}
+
+.main-content-container {
+    flex: 1;
+    padding: 2rem 1.5rem;
+}
+
+/* ======================================================
+   [08] Main Content Area
+   ====================================================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card .icon-wrapper {
+    width: 48px;
+    height: 48px;
+}
+
+.card .icon-wrapper.blue {
+    background-color: #e7f5ff;
+    color: #339af0;
+}
+
+.card .icon-wrapper.yellow {
+    background-color: #fff9db;
+    color: #fcc419;
+}
+
+.card .icon-wrapper.pink {
+    background-color: #fff0f6;
+    color: #f06595;
+}
+
+.card .icon-wrapper.teal {
+    background-color: #e6fcf5;
+    color: #20c997;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-title {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+/* ======================================================
+   [09] Dashboard Cards
+   ====================================================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card .icon-wrapper {
+    width: 48px;
+    height: 48px;
+}
+
+.card .icon-wrapper.blue {
+    background-color: #e7f5ff;
+    color: #339af0;
+}
+
+.card .icon-wrapper.yellow {
+    background-color: #fff9db;
+    color: #fcc419;
+}
+
+.card .icon-wrapper.pink {
+    background-color: #fff0f6;
+    color: #f06595;
+}
+
+.card .icon-wrapper.teal {
+    background-color: #e6fcf5;
+    color: #20c997;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-title {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+/* ======================================================
+   [10] Table Container & Table Styles with Enhanced Animations
+   ====================================================== */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+tr {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.total-row {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.total-row td {
+    border-bottom: none;
+}
+
+/* ======================================================
+   [11] Statistics Grid
+   ====================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+/* ======================================================
+   [12] State Styles
+   ====================================================== */
+.empty-state,
+.error-state {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.empty-state i,
+.error-state i {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* ======================================================
+   [13] Animations
+   ====================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======================================================
+   [14] Responsive Styles
+   ====================================================== */
+@media (max-width: 991.98px) {
+    .layout-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .main-content-container {
+        padding: 1rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================================================
+   [15] Loading Spinner
+   ====================================================== */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* ======================================================
+   [16] Button Styles
+   ====================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn i {
+    font-size: 0.875rem;
+}
+
+
+/* ======================================================
+   [18] Utility Classes
+   ====================================================== */
+.text-success {
+    color: #198754 !important;
+}
+
+.bg-success {
+    background-color: #198754 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

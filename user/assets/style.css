@@ -1,0 +1,262 @@
+/* ======================================================
+   [01] CSS Variables for Theming
+   ====================================================== */
+:root {
+  --primary-green: #1faf38;
+  --light-green-bg: #f0fdf4;
+  --light-gray-bg: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-color: #64748b;
+  --text-dark: #334155;
+  --sidebar-width: 250px;
+  --transition-speed: 0.3s;
+      --animation-duration: 0.5s; /* Added for consistent animation timing */
+}
+
+/* ======================================================
+   [02] General Body & Layout
+   ====================================================== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-gray-bg);
+  color: var(--text-dark);
+      animation: fadeIn var(--animation-duration) ease-in; /* Page load animation */
+}
+
+.main-content {
+  padding-left: 0;
+  transition: padding-left var(--transition-speed) ease;
+}
+
+@media (min-width: 992px) {
+  .main-content {
+    padding-left: var(--sidebar-width);
+  }
+}
+
+/* ======================================================
+   [03] Sidebar (Desktop) & Offcanvas (Mobile Menu)
+   ====================================================== */
+.sidebar,
+.offcanvas {
+  background-color: #ffffff;
+  transition: transform var(--transition-speed) ease;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+}
+
+/* ======================================================
+   [04] Sidebar & Offcanvas Links
+   ====================================================== */
+.sidebar .nav-link,
+.offcanvas .nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-link i,
+.offcanvas .nav-link i {
+  width: 20px; /* icon alignment */
+}
+
+/* Hover & Active Effects */
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+  background-color: var(--light-gray-bg);
+  color: var(--primary-green);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .nav-link::before,
+.offcanvas .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 0;
+  background-color: var(--primary-green);
+  border-radius: 0 4px 4px 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.sidebar .nav-link:hover::before,
+.offcanvas .nav-link:hover::before,
+.sidebar .nav-link.active::before,
+.offcanvas .nav-link.active::before {
+  width: 4px;
+}
+
+.sidebar .nav-link.active,
+.offcanvas .nav-link.active {
+  background-color: var(--light-green-bg);
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+/* ======================================================
+   [05] Header / Top Navbar
+   ====================================================== */
+.dashboard-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Search Input */
+.search-input {
+  background-color: var(--light-gray-bg);
+  border-radius: 25px;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+  background-color: #fff;
+}
+
+.search-icon-inside {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-color);
+}
+
+/* ======================================================
+   [06] Icon Buttons & User Avatar
+   ====================================================== */
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.bg-light-pink {
+  background-color: #fef2f2;
+}
+
+.bg-light-green {
+  background-color: var(--light-green-bg);
+}
+
+.user-img {
+  border: 2px solid transparent;
+  transition: border-color var(--transition-speed);
+}
+
+.user-img:hover {
+  border-color: var(--primary-green);
+}
+
+/* ======================
+   CONTENT STYLES
+   ====================== */
+/* Hero Section */
+.hero-section {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+/* Card Section */
+.card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================
+   RESPONSIVE STYLES
+   ====================== */
+@media (max-width: 768px) {
+  .hero-section,
+  .card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section,
+  .card {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+}
+
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        position: block;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        z-index: 1040;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+}

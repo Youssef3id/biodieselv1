@@ -1,0 +1,331 @@
+        /* ======================================================
+         [01] CSS Variables for Theming
+         ====================================================== */
+        :root {
+            --primary-green: #1FAF38;
+            --danger-red: #ef4444;
+            --light-gray-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-color: #64748b;
+            --text-dark: #334155;
+            --sidebar-width: 250px;
+            --transition-speed: 0.3s;
+            --animation-duration: 0.5s;
+            --light-green-bg: #F0FDF4;
+            --light-pink-bg: #FEF2F2;
+        }
+
+        /* ======================================================
+         [02] General Body & Layout Styles with Animations
+         ====================================================== */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--light-gray-bg);
+            color: var(--text-dark);
+            animation: fadeIn var(--animation-duration) ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .layout-wrapper {
+            min-height: 100vh;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            transition: margin-left var(--transition-speed) ease;
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+        }
+        
+        @media (max-width: 991.98px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        /* ======================================================
+         [03] Sidebar (Desktop) & Offcanvas (Mobile Menu)
+         ====================================================== */
+        .sidebar,
+        .offcanvas {
+            background-color: #ffffff;
+            transition: transform var(--transition-speed) ease;
+            animation: slideInLeft var(--animation-duration) ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1040;
+        }
+
+        /* ======================================================
+         [04] Sidebar & Mobile Nav Links with Enhanced Animations
+         ====================================================== */
+        .sidebar .nav-link,
+        .offcanvas .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.85rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all var(--transition-speed) ease-out;
+            transform-origin: left center;
+        }
+
+        .sidebar .nav-link::before,
+        .offcanvas .nav-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 0;
+            background-color: var(--primary-green);
+            border-radius: 0 4px 4px 0;
+            transition: width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .sidebar .nav-link:hover,
+        .offcanvas .nav-link:hover {
+            background-color: var(--light-gray-bg);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar .nav-link:hover::before,
+        .offcanvas .nav-link:hover::before {
+            width: 4px;
+        }
+
+        .sidebar .nav-link.active,
+        .offcanvas .nav-link.active {
+            background-color: var(--light-green-bg);
+            color: var(--primary-green);
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .sidebar .nav-link.active::before,
+        .offcanvas .nav-link.active::before {
+            width: 4px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(31, 175, 56, 0.2);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(31, 175, 56, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(31, 175, 56, 0);
+            }
+        }
+
+        /* ======================================================
+         [05] Header / Top Navigation Bar with Animations
+         ====================================================== */
+        .dashboard-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            animation: slideInDown var(--animation-duration) ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .search-input {
+            background-color: var(--light-gray-bg);
+            border-radius: 25px;
+            border: 1px solid transparent;
+            transition: all var(--transition-speed) ease-out;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+            background-color: #fff;
+            transform: scale(1.02);
+        }
+
+        .search-icon-inside {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-color);
+            transition: color var(--transition-speed) ease-out;
+        }
+
+        .search-input:focus+.search-icon-inside {
+            color: var(--primary-green);
+        }
+
+        /* ======================================================
+         [06] Icons & User Image Hover Effects with Animations
+         ====================================================== */
+        .icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .icon-wrapper:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-light-pink {
+            background-color: var(--light-pink-bg);
+        }
+
+        .bg-light-green {
+            background-color: var(--light-green-bg);
+        }
+
+        .user-img {
+            border: 2px solid transparent;
+            transition: all var(--transition-speed) ease-out;
+        }
+
+        .user-img:hover {
+            border-color: var(--primary-green);
+            transform: scale(1.05);
+        }
+
+        /* ======================================================
+         [07] Dashboard Content (NEW)
+         ====================================================== */
+        .dashboard-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .dashboard-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+        
+        /* Animation for cards appearing */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Stagger animation delay */
+        .row > * { animation-delay: calc(0.1s * var(--animation-order)); }
+
+        /* Chart container styles */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .text-green {
+            color: var(--primary-green);
+        }
+
+        .text-red {
+            color: var(--danger-red);
+        }
+        
+        .investment-item img {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+        }
+        
+        .trending-stock-table .sl-no {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .trending-stock-table .name {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        /* Section header with icon */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header i {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+        }
+
+        
+
+
+        

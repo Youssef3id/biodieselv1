@@ -1,0 +1,344 @@
+/* ======================================================
+   [01] CSS Variables for Theming
+   ====================================================== */
+:root {
+  --primary-green: #1faf38;
+  --light-green-bg: #f0fdf4;
+  --light-gray-bg: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-color: #64748b;
+  --text-dark: #334155;
+  --sidebar-width: 250px;
+  --transition-speed: 0.3s;
+      --animation-duration: 0.5s; /* Added for consistent animation timing */
+}
+
+/* ======================================================
+   [02] General Body & Layout
+   ====================================================== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-gray-bg);
+  color: var(--text-dark);
+      animation: fadeIn var(--animation-duration) ease-in; /* Page load animation */
+}
+
+.main-content {
+  padding-left: 0;
+  transition: padding-left var(--transition-speed) ease;
+}
+
+@media (min-width: 992px) {
+  .main-content {
+    padding-left: var(--sidebar-width);
+  }
+}
+
+/* ======================================================
+   [03] Sidebar (Desktop) & Offcanvas (Mobile Menu)
+   ====================================================== */
+.sidebar,
+.offcanvas {
+  background-color: #ffffff;
+  transition: transform var(--transition-speed) ease;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+}
+
+/* ======================================================
+   [04] Sidebar & Offcanvas Links
+   ====================================================== */
+.sidebar .nav-link,
+.offcanvas .nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-link i,
+.offcanvas .nav-link i {
+  width: 20px; /* icon alignment */
+}
+
+/* Hover & Active Effects */
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+  background-color: var(--light-gray-bg);
+  color: var(--primary-green);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .nav-link::before,
+.offcanvas .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 0;
+  background-color: var(--primary-green);
+  border-radius: 0 4px 4px 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.sidebar .nav-link:hover::before,
+.offcanvas .nav-link:hover::before,
+.sidebar .nav-link.active::before,
+.offcanvas .nav-link.active::before {
+  width: 4px;
+}
+
+.sidebar .nav-link.active,
+.offcanvas .nav-link.active {
+  background-color: var(--light-green-bg);
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+/* ======================================================
+   [05] Header / Top Navbar
+   ====================================================== */
+.dashboard-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Search Input */
+.search-input {
+  background-color: var(--light-gray-bg);
+  border-radius: 25px;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+  background-color: #fff;
+}
+
+.search-icon-inside {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-color);
+}
+
+/* ======================================================
+   [06] Icon Buttons & User Avatar
+   ====================================================== */
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.bg-light-pink {
+  background-color: #fef2f2;
+}
+
+.bg-light-green {
+  background-color: var(--light-green-bg);
+}
+
+.user-img {
+  border: 2px solid transparent;
+  transition: border-color var(--transition-speed);
+}
+
+.user-img:hover {
+  border-color: var(--primary-green);
+}
+
+/* ======================================================
+   [07] Progress Tracker Section
+   ====================================================== */
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.progress-container::before {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: var(--border-color);
+  z-index: 1;
+}
+
+.progress-step {
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  width: calc(25% - 1rem);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  animation: fadeSlideIn 0.5s ease-in-out both;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active,
+.progress-step.completed {
+  border-color: var(--primary-green);
+  background-color: var(--light-green-bg);
+}
+
+.progress-step:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress {
+  height: 6px;
+  border-radius: 6px;
+  background-color: var(--border-color);
+}
+
+.progress-bar {
+  background-color: var(--primary-green);
+  border-radius: 6px;
+}
+
+.step-percentage {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  margin-top: 0.5rem;
+}
+
+.step-icon {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+  background-color: var(--primary-green);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.progress-step:last-child .step-icon {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .progress-container::before {
+    left: 12.5%;
+    width: 75%;
+  }
+}
+
+/* ======================================================
+   [08] Pickup Card Section
+   ====================================================== */
+.pickup-card {
+  border-radius: 1rem;
+}
+
+.collector-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-top: -65px;
+}
+
+.form-select-lg {
+  font-weight: 500;
+  color: var(--text-dark);
+  padding: 0.75rem 1.25rem;
+}
+
+.contact-link {
+  color: var(--primary-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.track-btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.track-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ======================================================
+   [09] Responsive Adjustments
+   ====================================================== */
+@media (max-width: 991.98px) {
+  .main-content {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .progress-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .progress-step {
+    width: 100%;
+  }
+
+  .progress-container::before,
+  .step-icon {
+    display: none;
+  }
+}

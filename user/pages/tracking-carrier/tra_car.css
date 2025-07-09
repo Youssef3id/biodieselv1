@@ -1,0 +1,279 @@
+/* ======================================================
+   [01] Global Variables
+   ====================================================== */
+:root {
+  --primary-green: #1faf38;
+  --light-green-bg: #f0fdf4;
+  --light-gray-bg: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-color: #64748b;
+  --text-dark: #334155;
+  --sidebar-width: 250px;
+  --transition-speed: 0.3s;
+      --animation-duration: 0.5s; /* Added for consistent animation timing */
+}
+
+/* ======================================================
+   [02] Global Base Styles
+   ====================================================== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-gray-bg);
+  color: var(--text-dark);
+    animation: fadeIn var(--animation-duration) ease-in; /* Page load animation */
+}
+
+/* ======================================================
+   [03] Main Content Area
+   ====================================================== */
+.main-content {
+  padding-left: 0;
+  transition: padding-left var(--transition-speed) ease;
+}
+@media (min-width: 992px) {
+  .main-content {
+    padding-left: var(--sidebar-width);
+  }
+}
+
+/* ======================================================
+   [04] Sidebar and Offcanvas Navigation
+   ====================================================== */
+.sidebar,
+.offcanvas {
+  background-color: #ffffff;
+  transition: transform var(--transition-speed) ease;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+}
+
+.sidebar .nav-link,
+.offcanvas .nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-link i,
+.offcanvas .nav-link i {
+  width: 20px;
+}
+
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+  background-color: var(--light-gray-bg);
+  color: var(--primary-green);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .nav-link::before,
+.offcanvas .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 0;
+  background-color: var(--primary-green);
+  border-radius: 0 4px 4px 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.sidebar .nav-link:hover::before,
+.offcanvas .nav-link:hover::before,
+.sidebar .nav-link.active::before,
+.offcanvas .nav-link.active::before {
+  width: 4px;
+}
+
+.sidebar .nav-link.active,
+.offcanvas .nav-link.active {
+  background-color: var(--light-green-bg);
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+/* ======================================================
+   [05] Top Header Bar (Search + Icons + Avatar)
+   ====================================================== */
+.dashboard-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-input {
+  background-color: var(--light-gray-bg);
+  border-radius: 25px;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+  background-color: #fff;
+}
+
+.search-icon-inside {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-color);
+}
+
+.icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.bg-light-pink {
+  background-color: #fef2f2;
+}
+
+.bg-light-green {
+  background-color: var(--light-green-bg);
+}
+
+.user-img {
+  border: 2px solid transparent;
+  transition: border-color var(--transition-speed);
+}
+
+.user-img:hover {
+  border-color: var(--primary-green);
+}
+
+/* ======================================================
+   [06] Carrier Card Section
+   ====================================================== */
+.carrier-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.carrier-card h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.highlight {
+  color: #1FAF38;
+  border-bottom: 2px solid #718EBF;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ======================================================
+   [07] User Info and Contact Icons
+   ====================================================== */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+}
+
+.user-info .icons {
+  margin-left: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.user-info img {
+  border-radius: 50%;
+}
+
+.icons i {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #00cc66;
+  cursor: pointer;
+}
+
+/* ======================================================
+   [08] Action Buttons
+   ====================================================== */
+.buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.cancel-btn {
+  background-color: #718EBF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  margin-right: 10px;
+  transition: all 0.3s ease; /* smooth effect */
+}
+
+/* Confirm button */
+.confirm-btn {
+  background-color: #1FAF38;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease; /* smooth effect */
+}
+
+/* Hover effects for both buttons */
+.cancel-btn:hover,
+.confirm-btn:hover {
+  transform: translateY(-3px); /* slight pop-up */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* soft shadow */
+  opacity: 0.95; /* slight dim for visual feedback */
+}
+
+/* ======================================================
+   [09] Map Display Section
+   ====================================================== */
+#map {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-section img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}

@@ -1,0 +1,423 @@
+/* ======================================================
+   [01] CSS Variables for Theming
+   ====================================================== */
+:root {
+    --primary-green: #1FAF38;
+    --danger-red: #ef4444;
+    --light-gray-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-color: #64748b;
+    --text-dark: #334155;
+    --sidebar-width: 250px;
+    --transition-speed: 0.3s;
+    --animation-duration: 0.5s;
+    --card-border-radius: 1.5rem;
+}
+
+/* ======================================================
+   [02] General Body & Layout Styles with Animations
+   ====================================================== */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--light-gray-bg);
+    color: var(--text-dark);
+    animation: fadeIn var(--animation-duration) ease-in;
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    transition: margin-left var(--transition-speed) ease;
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* ======================================================
+   [03] Animation Keyframes
+   ====================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(31, 175, 56, 0.2); }
+    70% { box-shadow: 0 0 0 8px rgba(31, 175, 56, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(31, 175, 56, 0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================================================
+   [04] Sidebar (Desktop) & Offcanvas (Mobile Menu)
+   ====================================================== */
+.sidebar,
+.offcanvas {
+    background-color: #ffffff;
+    transition: transform var(--transition-speed) ease;
+    animation: slideInLeft var(--animation-duration) ease-out;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+}
+
+/* ======================================================
+   [05] Sidebar & Mobile Nav Links with Enhanced Animations
+   ====================================================== */
+.sidebar .nav-link,
+.offcanvas .nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all var(--transition-speed) ease-out;
+    transform-origin: left center;
+}
+
+.sidebar .nav-link::before,
+.offcanvas .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 0;
+    background-color: var(--primary-green);
+    border-radius: 0 4px 4px 0;
+    transition: width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+    background-color: var(--light-gray-bg);
+    color: var(--primary-green);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .nav-link:hover::before,
+.offcanvas .nav-link:hover::before {
+    width: 4px;
+}
+
+.sidebar .nav-link.active,
+.offcanvas .nav-link.active {
+    background-color: #F0FDF4;
+    color: var(--primary-green);
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+.sidebar .nav-link.active::before,
+.offcanvas .nav-link.active::before {
+    width: 4px;
+}
+
+/* ======================================================
+   [06] Header / Top Navigation Bar with Animations
+   ====================================================== */
+.dashboard-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    animation: slideInDown var(--animation-duration) ease-out;
+}
+
+.search-input {
+    background-color: var(--light-gray-bg);
+    border-radius: 25px;
+    border: 1px solid transparent;
+    transition: all var(--transition-speed) ease-out;
+}
+
+.search-input:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.25rem rgba(31, 175, 56, 0.1);
+    background-color: #fff;
+    transform: scale(1.02);
+}
+
+.search-icon-inside {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease-out;
+}
+
+.search-input:focus + .search-icon-inside {
+    color: var(--primary-green);
+}
+
+/* ======================================================
+   [07] Icons & User Image Hover Effects with Animations
+   ====================================================== */
+.icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bg-light-pink { background-color: #FEF2F2; }
+.bg-light-green { background-color: #F0FDF4; }
+
+.user-img {
+    border: 2px solid transparent;
+    transition: all var(--transition-speed) ease-out;
+}
+
+.user-img:hover {
+    border-color: var(--primary-green);
+    transform: scale(1.05);
+}
+
+/* ======================================================
+   [08] Custom Content Styles
+   ====================================================== */
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--text-dark);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.card {
+    border: none;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    height: 100%;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* ======================================================
+   [09] Credit Card Styles
+   ====================================================== */
+.credit-card-new {
+    border-radius: var(--card-border-radius);
+    padding: 1.5rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    width: 330px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.credit-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.credit-card-new.green { background-color: var(--primary-green); }
+.credit-card-new.light { background-color: #F3F4F6; color: var(--text-dark); }
+.credit-card-new .label { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase;}
+.credit-card-new p { font-size: 0.95rem; font-weight: 600; margin: 0; }
+.credit-card-new .amount { font-size: 1.5rem; font-weight: 700; }
+.credit-card-new .fa-wifi { transform: rotate(90deg); opacity: 0.9; font-size: 1.2rem; }
+.credit-card-new .card-number-text { font-family: monospace; font-size: 1.25rem; letter-spacing: 2px; }
+.credit-card-new .card-logo { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255,255,255,0.8); }
+.credit-card-new.light .card-logo-dark { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(0,0,0,0.1); }
+
+/* ======================================================
+   [10] Card List Styles
+   ====================================================== */
+.card-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: #F9FAFB;
+    border-radius: 1.25rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+}
+
+.card-list-item:hover {
+    background-color: #ffffff;
+    transform: scale(1.01);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-list-item:last-child { margin-bottom: 0; }
+.card-list-item .icon-bg {
+    width: 48px; height: 48px;
+    border-radius: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+}
+.icon-bg.blue { background-color: #E0E7FF; color: #4C73DF; }
+.icon-bg.red { background-color: #FFE4E6; color: #EA719C; }
+.icon-bg.yellow { background-color: #FFF4DE; color: #FFA93B; }
+
+.card-list-item .item-details { flex-basis: 120px; }
+.card-list-item .item-details span { font-size: 0.8rem; color: var(--text-color); }
+.card-list-item .item-details p { font-size: 0.9rem; font-weight: 500; margin: 0; }
+.card-list-item a { color: var(--primary-green); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+.card-list-item a:hover { text-decoration: underline; }
+
+/* ======================================================
+   [11] Form Styles
+   ====================================================== */
+.new-card-form .form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.new-card-form .form-control {
+    background-color: #F9FAFB;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 0.65rem 1rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.new-card-form .form-control:hover {
+    background-color: #fff;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.2rem rgba(31, 175, 56, 0.08);
+    transform: scale(1.01);
+}
+
+.new-card-form .form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.2rem rgba(31, 175, 56, 0.1);
+    background-color: #fff;
+}
+
+.btn-add-card {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-add-card:hover {
+    background-color: #189430;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(25, 148, 48, 0.2);
+}
+
+.date-input-wrapper::after {
+    content: '\\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 59px;
+    right: 25px;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    pointer-events: none;
+}
+
+/* ======================================================
+   [12] Settings List Styles
+   ====================================================== */
+.settings-list .tile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settings-list .tile:hover {
+    background-color: #f8fafc;
+    transform: scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.settings-list .tile .tile-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.tile-icon { background-color: #E0E7FF; color: #4338CA; }
+.tile-icon.success { background-color: #D1FAE5; color: #059669; }
+.tile-icon.danger { background-color: #FFE4E6; color: #EA719C; }
+.tile-icon.warning { background-color: #FEF3C7; color: #D97706; }
+
+.settings-list .text h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+}
+
+.settings-list .text span {
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
+/* ======================================================
+   [13] Responsive Adjustments
+   ====================================================== */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
